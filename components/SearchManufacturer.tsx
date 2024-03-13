@@ -1,4 +1,4 @@
-"use clieent";
+"use client";
 import { Combobox } from '@headlessui/react';
 
 import { Transition } from '@headlessui/react';
