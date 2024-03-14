@@ -80,6 +80,7 @@ const SearchManufacturer = ({ manufacturer, setManufacturer
                                 )}
                             
                         </Combobox.Options>
+                        
 
                     </Transition>
                 </div>
