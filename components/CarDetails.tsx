@@ -84,6 +84,7 @@ const CarDetails = ({ isOpen, closeModal, car }: CarDetailsProps) => {
         </Dialog>
       </Transition>
     </>
+    
   )
 }
 
