@@ -75,7 +75,7 @@ const CarDetails = ({ isOpen, closeModal, car }: CarDetailsProps) => {
                                 </div>
                               ))}
                         </div>
-                        <div><p>olajide mubarak i am from kwara state , i love my book and </p></div>
+                        
                   </div>
                   
                 </Dialog.Panel>
