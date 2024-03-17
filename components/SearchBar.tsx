@@ -2,7 +2,13 @@
 
 import { useState } from 'react';
 
-import { SearchManufacturer } from '.'
+import { SearchManufacturer } from './';
+
+const SearchButton = () => (
+  <button>
+    
+  </button>
+)
 
 const SearchBar = () => {
     const [manufacturer, setManufacturer] = useState('')
@@ -13,6 +19,7 @@ const SearchBar = () => {
             <SearchManufacturer 
             manufacturer={manufacturer}
             setManufacturer={setManufacturer}/>
+            <SearchButton/>
         </div>
         
         
