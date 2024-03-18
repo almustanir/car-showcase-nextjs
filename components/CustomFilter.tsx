@@ -33,13 +33,16 @@ const CustomFilter = ({title, options}: CustomFilterProps) => {
             >
               <Listbox.Options className="custom-filter__options">
                 {options.map((option) => (
-                  // <Listbox.Option>
-                  //   {({ selected}) => (
-                  //     <span>
-                  //       {option.title}
-                  //     </span>
-                  //   )}
-                  // </Listbox.Option>
+                  <Listbox.Option 
+                  key={option.title}
+                  value={option}
+                  >
+                    {({ selected}) => (
+                      <span>
+                        {option.title}
+                      </span>
+                    )}
+                  </Listbox.Option>
                 ))}
               </Listbox.Options>
             </Transition>
