@@ -5,7 +5,7 @@ import { CustomFilter, Hero, SearchBar, CarCard, ShowMore } from "@/components";
 import { fuels, yearsOfProduction } from "@/constants";
 import { fetchCars } from "@/utils";
 import Image from "next/image";
-import { useSearchParams } from "next/navigation";
+
 
 
 export default function Home() {
@@ -24,6 +24,8 @@ export default function Home() {
   //pagination state
   const [limit, setlimit] = useState(10);
   const getCars = async () => {
+    setLoading(true);
+   try {
     const result = await fetchCars({
       manufacturer: manufacturer || '',
       year: year || 2022,
@@ -33,6 +35,11 @@ export default function Home() {
     });
 
     setAllCars(result);
+   } catch (error) {
+    console.log(error);
+   } finally {
+    setLoading(false);
+   }
   }
   
 useEffect (() => {
@@ -50,15 +57,16 @@ useEffect (() => {
           <p>Explore the cars you might like</p>
         </div>
         <div className="home__filters">
-          <SearchBar />
+          <SearchBar  setManufacturer={setmanufacturer}
+          setModel={setmodel}/>
 
           <div className="home__filter-container">
-            <CustomFilter title="fuel" options={fuels} />
-            <CustomFilter title="year" options={yearsOfProduction} />
+            <CustomFilter title="fuel" options={fuels}  setFilter={setfuel}/>
+            <CustomFilter title="year" options={yearsOfProduction} setFilter={setyear} />
           </div>
         </div>
 
-        {!isDataEmpty ?  (
+        {allCars.length > 0 ?  (
           <section>
            <div className="home__cars-wrapper">
               {allCars?.map((car) => ( 
@@ -67,10 +75,21 @@ useEffect (() => {
               ))}
 
            </div>
+           {loading && (
+            <div className="mt-16 w-full flex-center">
+              <Image
+              src="/loader.svg"
+              alt="loader"
+              width={50}
+              height={50}
+              className="object-contain"
+              />
+            </div>
+           )}
            <ShowMore
-            pageNumber={(searchParams.limit || 
-              10) / 10}
-              isNext={(searchParams.limit || 10) > allCars.length}
+            pageNumber={limit / 10}
+              isNext={limit  > allCars.length}
+              setLimit={setlimit}
            />
           </section>
         ) : (
